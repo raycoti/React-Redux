@@ -1,0 +1,57 @@
+React Redux:
+import {connect} from 'react-redux'
+import Player from './Player';
+import {setProgress, play, /**/} from './action-creators/player
+
+
+/*
+action creators 
+  index ---> imports all actions from other action files
+        ---> exports them in a master action creators object
+  playerActions
+  albumActions
+reducers
+  rootReducer
+  playerReducer
+  albumReducer
+Components
+  ...
+Containter 
+  ...
+
+*/
+
+
+
+
+
+function mapDispatchToProps(state  /*,ownProps */){
+  return {
+    currentSong: state.player.currentSong,
+    currentSongList: state.player.currentSongList,
+    isPlaying: state.player.isPlaying,
+    progress: state.player.progress
+  }
+}
+
+
+function mapStateToProps(dispatch){
+  return {
+    setProgress: () => {dispatch(setProgress(progress))},
+    play: () => {dispatch(play)}
+
+  }
+}
+
+function Player ({
+  currentSong,
+  currentSongList,
+  isPlaying,
+  progress,
+  })
+
+connect(mapStateToProps, mapDispatchToProps)(Component);
+//returns a function that is a higher order componenet
+//specify how 
+//want to connect store to componenets 
+

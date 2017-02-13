@@ -1,0 +1,40 @@
+React router:
+HIGHER ORDER function
+_____________________________________
+  function that returns a function 
+    -thunk, bind
+  a function that takes a function
+    -map reduce for each
+  decorator function
+    -takes in a funciton 
+    -gives a modefied version of that function 
+    -with extra function
+_________________________________________
+Higher order component:
+  - a function or constructor   
+  - a HOC is a component that
+  a) takes in a componenet
+  b) returns a modified version of that componenet
+
+  <SimpleComponent />
+  hoc(SimpleComponent)
+  ----> enhanced component
+  ----> <EnhancedComponent />
+
+const swirl = (Component) => {
+  return (props)=> {
+    return (
+      <span className "swirl">
+        <componenet {...props} />)
+      </span>
+  }
+}
+
+function icon ({src, name, onClick}){
+  
+}
+
+const swirlIcon = swirl(component)
+
+there is a wrapping hierarchy
+  
