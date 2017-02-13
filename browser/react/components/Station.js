@@ -2,23 +2,21 @@ import React from 'react'
 import Songs from './Songs'
 
 export default function Station(props){
-  const songs = [];
-  const selectedStation = props.routeParams.genreName;
-  const currentSong = {};
-  const isPlaying = false;
-  const toggle = () => {};
-  console.log(props);
+  // const selectedStation = props.routeParams.genreName;
+  console.log('station props', props)
+  // const songs = [];
+  // const currentSong = {};
+  // const isPlaying = false;
+  //const toggle = () => {};
+  // console.log(console.log(props));
   return (
     <div>
-      <h4>{selectedStation}</h4>
+      <h4>{props.genreName}</h4>
       <Songs
-      songs={songs}
-      currentSong={currentSong}
-      isPlaying={isPlaying}
-      toggle={toggle} />
+      songs={props.songs}
+      currentSong={props.currentSong}
+      isPlaying={props.isPlaying}
+      toggle={props.toggle} />
     </div>
   )
 }
-
-
-
