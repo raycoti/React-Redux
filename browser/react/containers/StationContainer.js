@@ -27,9 +27,6 @@ function mapDispatchToProps(dispatch, ownProps){
   //console.log('store: ', ownProps)
 
   return {
-    test: function() {
-      return 'this is a test'
-    },
     toggle: function(song, list) {
       dispatch(toggleSong(song, list))
     }

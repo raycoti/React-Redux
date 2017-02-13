@@ -1,19 +1,19 @@
 import React, {Component} from 'react';
-import store from '../store';
+//import store from '../store';
 import Lyrics from '../components/Lyrics';
 
 import {searchLyrics} from '../action-creators/lyrics';
+import {connect} from 'react-redux';
 
-export default class extends Component {
+class LyricsContainer extends Component {
 
   constructor() {
 
     super();
-
-    this.state = Object.assign({
+    this.state = {
       artistQuery: '',
-      songQuery: ''
-    }, store.getState());
+      songQuery: '',
+    };
 
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleArtistInput = this.handleArtistInput.bind(this);
@@ -21,12 +21,12 @@ export default class extends Component {
 
   }
 
-  componentDidMount() {
+/*  componentDidMount() {
     this.unsubscribe = store.subscribe(() => {
       this.setState(store.getState());
     });
   }
-
+*/
   handleArtistInput(artist) {
     this.setState({ artistQuery: artist });
   }
@@ -36,20 +36,22 @@ export default class extends Component {
   }
 
   handleSubmit(e) {
+   // console.log('hello')
     e.preventDefault();
     if (this.state.artistQuery && this.state.songQuery) {
-      store.dispatch(searchLyrics(this.state.artistQuery, this.state.songQuery));
+      this.props.searchLyrics(this.state.artistQuery, this.state.songQuery);
     }
   }
 
-  componentWillUnmount() {
+/*  componentWillUnmount() {
     this.unsubscribe();
   }
-
+*/
   render() {
     return (
       <Lyrics
         {...this.state}
+        text={this.props.text}
         handleChange={this.handleChange}
         setArtist={this.handleArtistInput}
         setSong={this.handleSongInput}
@@ -58,3 +60,22 @@ export default class extends Component {
   }
 
 }
+
+function mapStateToProps(state){
+  return {
+    text: state.lyrics.text,
+  }
+}
+
+function mapDispatchToProps(dispatch, ownProps){
+  // let displaySongs = ownProps.stations[routeParams.genreName]
+  // console.log(this);
+  return {
+    searchLyrics: function(artistQuery, songQuery){
+      return dispatch(searchLyrics(artistQuery, songQuery))
+    }
+  }
+}
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(LyricsContainer)
